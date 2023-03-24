@@ -29,13 +29,62 @@ const confirmSignUpPasswordIn = document.getElementById(
   "confirm-password-signup"
 );
 const createacctbtn = document.getElementById("create-acct-btn");
-// const createacctbtn = document.getElementById("create-acct-btn");
 const returnBtn = document.getElementById("return-btn");
 const signupButton = document.getElementById("sign-up");
 
 const main = document.getElementById("main");
 const createacct = document.getElementById("create-acct");
 
+var email,
+  password,
+  signupEmail,
+  signupPassword,
+  confirmSignupEmail,
+  confirmSignUpPassword;
+
+// create account functionalities
+createacctbtn.addEventListener("click", function () {
+  var isVerified = true;
+
+  signupEmail = signupEmailIn.value;
+  confirmSignupEmail = confirmSignupEmailIn.value;
+  if (signupEmail != confirmSignupEmail) {
+    window.alert("Email fields do not match. Try again.");
+    isVerified = false;
+  }
+
+  signupPassword = signupPasswordIn.value;
+  confirmSignUpPassword = confirmSignUpPasswordIn.value;
+  if (signupPassword != confirmSignUpPassword) {
+    window.alert("Password fields do not match. Try again.");
+    isVerified = false;
+  }
+
+  if (
+    signupEmail == null ||
+    confirmSignupEmail == null ||
+    signupPassword == null ||
+    confirmSignUpPassword == null
+  ) {
+    window.alert("Please fill out all required fields.");
+    isVerified = false;
+  }
+
+  if (isVerified) {
+    createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
+      .then(() => {
+        window.alert("Success! Account created.");
+        window.location = "/www.melbite.com";
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        window.alert("Error occurred. Try again.");
+        window.alert(errorMessage);
+      });
+  }
+});
+
+// Login / Register Routes
 signupButton.addEventListener("click", () => {
   main.style.display = "none";
   createacct.style.display = "block";
