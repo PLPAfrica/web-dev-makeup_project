@@ -74,7 +74,7 @@ createacctbtn.addEventListener("click", function () {
     createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
       .then(() => {
         window.alert("Success! Account created.");
-        window.location = "/www.melbite.com";
+        window.location = "./dash.html";
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -83,6 +83,8 @@ createacctbtn.addEventListener("click", function () {
       });
   }
 });
+
+// Login codes
 
 // Login / Register Routes
 signupButton.addEventListener("click", () => {
