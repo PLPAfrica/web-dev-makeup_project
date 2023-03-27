@@ -86,6 +86,20 @@ createacctbtn.addEventListener("click", function () {
 
 // Login codes
 
+submitButton.addEventListener("click", () => {
+  email = emailInput.value;
+  password = passwordInput.value;
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      window.alert("Success, Welcome Back!");
+      window.location = "./dash.html";
+    })
+    .catch((err) => {
+      // console.log(err.message);
+      window.alert(err.message);
+    });
+});
+
 // Login / Register Routes
 signupButton.addEventListener("click", () => {
   main.style.display = "none";
